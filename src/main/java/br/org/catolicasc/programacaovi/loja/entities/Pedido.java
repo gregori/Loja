@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -26,12 +27,16 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private float total;
     @Temporal(javax.persistence.TemporalType.DATE)
+    @NotNull
     private Date dataPedido;
     @OneToOne
+    @NotNull
     private Cliente cliente;
     @OneToMany(mappedBy = "pedido")
+    @NotNull
     private List<Item> itens;
 
     public Long getId() {

@@ -5,12 +5,14 @@
  */
 package br.org.catolicasc.programacaovi.loja.entities;
 
+import br.org.catolicasc.programacaovi.loja.validators.Cep;
+import br.org.catolicasc.programacaovi.loja.validators.VerifyValue;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -25,12 +27,21 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @NotNull
     private String nome;
+    @NotNull
     private String sobrenome;
+    @NotNull
     private String rua;
+    @NotNull
     private String cidade;
+    @NotNull
+    @VerifyValue(Estado.class)
     private String estado;
+    @NotNull
+    @Cep
     private String cep;
+    @NotNull
     private String pais;
 
     public Long getId() {

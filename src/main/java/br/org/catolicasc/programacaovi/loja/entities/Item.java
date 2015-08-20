@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -25,8 +27,10 @@ public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Min(1)
     private int quantidade;
     @OneToOne
+    @NotNull
     private Produto produto;
 
     public Long getId() {

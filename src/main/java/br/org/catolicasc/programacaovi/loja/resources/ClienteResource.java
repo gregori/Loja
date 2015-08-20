@@ -10,6 +10,8 @@ import br.org.catolicasc.programacaovi.loja.managers.SimpleEntityManager;
 import br.org.catolicasc.programacaovi.loja.services.ClienteService;
 import java.net.URI;
 import java.util.List;
+import javax.validation.Valid;
+import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -58,7 +60,8 @@ public class ClienteResource {
     
     @POST
     @Consumes("application/json")
-    public Response postClientes(Cliente cliente) {
+    @ValidateOnExecution
+    public Response postClientes(@Valid Cliente cliente) {
         //TODO: Tratamento de erro!
         clienteService.save(cliente);
         // Cria a URI com o ID do cliente que acabamos de criar

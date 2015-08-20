@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -21,6 +22,10 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
+    private String nome;
+    @NotNull
+    private float preco;
 
     public Long getId() {
         return id;
@@ -53,6 +58,34 @@ public class Produto implements Serializable {
     @Override
     public String toString() {
         return "br.org.catolicasc.programacaovi.loja.entities.Produto[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the preco
+     */
+    public float getPreco() {
+        return preco;
+    }
+
+    /**
+     * @param preco the preco to set
+     */
+    public void setPreco(float preco) {
+        this.preco = preco;
     }
     
 }
