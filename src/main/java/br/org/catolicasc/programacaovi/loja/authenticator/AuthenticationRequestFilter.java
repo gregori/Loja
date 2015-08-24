@@ -33,6 +33,7 @@ public class AuthenticationRequestFilter implements ContainerRequestFilter {
         UsuarioService usrService = new UsuarioService(s);
         MultivaluedMap<String, String> headers = requestContext.getHeaders();
         String token = headers.getFirst("token");
+        // Para fins de depuração
         System.out.println("token: " + token);
         Boolean authenticated = false;
 
