@@ -24,18 +24,20 @@ public class MyExceptionMapper implements ExceptionMapper<Exception> {
         // classe enviada com a resposta, contendo o erro e a mensagem
         
 
-        String error = "O serviço encontrou um erro interno";
+        String error = "O serviço encontrou um erro interno: ";
+        int statusCode = 503;
+        
         // Pode-se adicionar outras exceções para tratamento aqui.
-        if (e instanceof ClienteNotFoundException) {
-            resourceError.setCode(Response.Status.NOT_FOUND.getStatusCode());
-            resourceError.setMessage(e.getMessage());
-            // Retorno da mensagem de erro
-            return Response.status(Response.Status.NOT_FOUND).entity(resourceError)
-                    .type(MediaType.APPLICATION_JSON_TYPE)
-                    .build();
+        if (e instanceof ResourceNotFoundException) {
+            statusCode = Response.Status.NOT_FOUND.getStatusCode();
+        } else if (e instanceof NotAuthenticatedException) {
+            statusCode = Response.Status.FORBIDDEN.getStatusCode();
         }
+        error += e.getMessage();
+        resourceError.setCode(statusCode);
+        resourceError.setMessage(error);
         // Caso a exceção não seja mapeada, retorna um erro 503
-        return Response.status(503).entity(resourceError)
+        return Response.status(statusCode).entity(resourceError)
                 .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
     }

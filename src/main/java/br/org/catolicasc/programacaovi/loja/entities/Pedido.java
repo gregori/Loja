@@ -8,6 +8,7 @@ package br.org.catolicasc.programacaovi.loja.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,15 +29,17 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
+    @Column(nullable=false)
     private float total;
     @Temporal(javax.persistence.TemporalType.DATE)
     @NotNull
+    @Column(nullable=false)
     private Date dataPedido;
     @OneToOne
-    @NotNull
     private Cliente cliente;
     @OneToMany(mappedBy = "pedido")
     @NotNull
+    @Column(nullable=false)
     private List<Item> itens;
 
     public Long getId() {

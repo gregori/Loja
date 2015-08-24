@@ -5,8 +5,9 @@
  */
 package br.org.catolicasc.programacaovi.loja.resources;
 
+import br.org.catolicasc.programacaovi.loja.authenticator.Authenticated;
 import br.org.catolicasc.programacaovi.loja.entities.Cliente;
-import br.org.catolicasc.programacaovi.loja.exceptions.ClienteNotFoundException;
+import br.org.catolicasc.programacaovi.loja.exceptions.ResourceNotFoundException;
 import br.org.catolicasc.programacaovi.loja.managers.SimpleEntityManager;
 import br.org.catolicasc.programacaovi.loja.services.ClienteService;
 import java.net.URI;
@@ -49,6 +50,7 @@ public class ClienteResource {
     
     @GET
     @Produces("application/json")
+    @Authenticated
     public Response getClientes() {
         // Retorna diretamente o resultado de findAll()
         // Futuramente podemos criar os parâmetros de busca para paginação
@@ -91,7 +93,7 @@ public class ClienteResource {
     public Response getCliente(@PathParam("id") Long id) {
         Cliente cliente = clienteService.find(id);
         if (cliente == null)
-            throw new ClienteNotFoundException(
+            throw new ResourceNotFoundException(
                     "Não foi encontrado um cliente com id " + id);
         
         return Response.ok(cliente).build();

@@ -6,6 +6,7 @@
 package br.org.catolicasc.programacaovi.loja.entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,9 +23,9 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotNull
+
     private String nome;
-    @NotNull
+
     private float preco;
 
     public Long getId() {

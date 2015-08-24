@@ -9,8 +9,8 @@ package br.org.catolicasc.programacaovi.loja.exceptions;
  *
  * @author rodrigo
  */
-public class ClienteNotFoundException extends RuntimeException {
-    public ClienteNotFoundException(String message) {
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException(String message) {
         super(message);
     }
 }

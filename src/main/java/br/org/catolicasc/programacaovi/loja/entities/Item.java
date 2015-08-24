@@ -6,6 +6,7 @@
 package br.org.catolicasc.programacaovi.loja.entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,6 @@ public class Item implements Serializable {
     @Min(1)
     private int quantidade;
     @OneToOne
-    @NotNull
     private Produto produto;
 
     public Long getId() {

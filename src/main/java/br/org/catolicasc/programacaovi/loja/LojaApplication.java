@@ -15,6 +15,6 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("/api")
 public class LojaApplication extends PackagesResourceConfig {
     public LojaApplication() {
-        super("br.org.catolicasc.programacaovi.loja.resources");
+        super("br.org.catolicasc.programacaovi.loja.resources,br.org.catolicasc.programacaovi.loja.exceptions,br.org.catolicasc.programacaovi.loja.authenticator");
     }
 }
